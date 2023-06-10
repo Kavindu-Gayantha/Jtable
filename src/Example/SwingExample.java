@@ -1,46 +1,26 @@
 package Example;
 
-import javax.swing.*;
-import java.awt.*;
-
 public class SwingExample {
-    public JFrame getTable() {
+    public void createTable() {
 
-
-        Object[][] data = {
-                {"John", 25, "USA"},
-                {"Alice", 30, "UK"},
-                {"Bob", 35, "Canada"}
-        };
-
-        String[] columnName = {"Name", "Age", "Country"};
-
-        TableModel tableModel = new TableModel(data, columnName);
-
-        JTable table = new JTable(tableModel);  // use the model
-
-        JScrollPane scrollPane = new JScrollPane(table);
-
-        JPanel jPanel = getPanel();
-        jPanel.add(scrollPane, BorderLayout.CENTER);
-        JFrame frame = getFrame();
-        frame.add(jPanel);
-//        frame.setVisible(true);
-        return frame;
+        TableView tableView = new TableView();
+        tableView.buildUI(getModelData());
     }
 
-    private JPanel getPanel() {
-        JPanel panel = new JPanel();
-        panel.setLayout(new BorderLayout());
-        return panel;
-    }
+    private Object[][] getModelData() {
+        TableData tableData1 = new TableData("Kavindu", 30, "Sri Lanka");
+        TableData tableData2 = new TableData("Kasun", 33, "canada");
+        TableData tableData3 = new TableData("Ishara", 13, "New Zeeland");
 
-    private JFrame getFrame() {
-        JFrame frame = new JFrame("sWING TABLE");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400, 300);
-        return frame;
-    }
+        TableData[] tableDataArray = new TableData[]{tableData1, tableData2, tableData3};
 
+        Object[][] data = new Object[4][3];
+        for (int a = 0; a < tableDataArray.length; a++) {
+            data[a][0] = tableDataArray[a].getName();
+            data[a][1] = tableDataArray[a].getAge();
+            data[a][2] = tableDataArray[a].getCountry();
+        }
+        return data;
+    }
 
 }
