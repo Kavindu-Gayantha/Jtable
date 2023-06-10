@@ -1,10 +1,15 @@
 package Example;
 
 public class SwingExample {
-    public void createTable() {
 
+    public void createTableNew() {
+        TableModel tableModel = new TableModel(getModelData(), new String[]{"name", "Age", "Country"});
         TableView tableView = new TableView();
+        TableController tableController = new TableController(tableModel, tableView);
+        tableView.setModel(tableModel);
         tableView.buildUI(getModelData());
+        tableController.setFrameVisible(true);
+
     }
 
     private Object[][] getModelData() {

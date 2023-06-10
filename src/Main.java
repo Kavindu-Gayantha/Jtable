@@ -8,6 +8,6 @@ public class Main
   public static void main(String[] args)
   {
     SwingExample sw = new SwingExample();
-    sw.createTable();
+    sw.createTableNew();
   }
 }

@@ -3,29 +3,39 @@ package Example;
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class TableView extends JTable {
+
+    private JPanel panel;
+    private JFrame frame;
+
+    public TableView() {
+        this.panel = new JPanel();
+        this.frame = new JFrame("SWING TABLE : " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")));
+    }
+
     void buildUI(Object[][] data) {
 
-        JFrame frame = getFrame();
-        JPanel jPanel = getPanel();
+        frame = getFrame();
+        getPanel().setLayout(new BorderLayout());
         JTable table = new JTable(new TableModel(data, new String[]{"name", "Age", "Country"}));  // use the model
 
         JScrollPane scrollPane = new JScrollPane(table);
 
-        jPanel.add(scrollPane, BorderLayout.CENTER);
-        frame.add(jPanel);
-        frame.setVisible(true);
+        panel.add(scrollPane, BorderLayout.CENTER);
+        frame.add(panel);
+    }
+
+    public void setFrameVisible(boolean visible) {
+        frame.setVisible(visible);
     }
 
     private JPanel getPanel() {
-        JPanel panel = new JPanel();
-        panel.setLayout(new BorderLayout());
         return panel;
     }
 
     private JFrame getFrame() {
-        JFrame frame = new JFrame("SWING TABLE : " + LocalDateTime.now());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400, 300);
         return frame;
