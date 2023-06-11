@@ -26,5 +26,12 @@ public class TableModel extends AbstractTableModel {
         return data[rowIndex][columnIndex];
     }
 
-
+    /**
+     * @param column the column being queried
+     * @return
+     */
+    @Override
+    public String getColumnName(int column) {
+        return columNames[column];
+    }
 }

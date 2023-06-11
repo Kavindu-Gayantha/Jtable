@@ -1,6 +1,7 @@
 package Example;
 
 import javax.swing.*;
+import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -22,7 +23,7 @@ public class TableView extends JTable {
         JTable table = new JTable(new TableModel(data, new String[]{"name", "Age", "Country"}));  // use the model
 
         JScrollPane scrollPane = new JScrollPane(table);
-
+        scrollPane.setBackground(new Color(200, 107, 31));
         panel.add(scrollPane, BorderLayout.CENTER);
         frame.add(panel);
     }
@@ -32,12 +33,14 @@ public class TableView extends JTable {
     }
 
     private JPanel getPanel() {
+        panel.setBackground(new Color(58, 121, 16));
         return panel;
     }
 
     private JFrame getFrame() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400, 300);
+        frame.setResizable(true);
+        frame.setSize(800, 600);
         return frame;
     }
 
